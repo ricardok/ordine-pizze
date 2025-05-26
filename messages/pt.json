@@ -1,0 +1,97 @@
+{
+  "title": "🍕 Ordine Pizze",
+  "subtitle": "Faça seu pedido de pizza com sistema de descontos inteligente",
+  "pizza": {
+    "select": {
+      "title": "Selecione suas Pizzas",
+      "description": "Escolha suas pizzas, tamanhos e ingredientes extras",
+      "label": "Pizza",
+      "placeholder": "Selecione uma pizza",
+      "notes": "Observações para esta pizza (opcional)",
+      "notesPlaceholder": "Ex: sem cebola, massa fina, bem assada...",
+      "addToCart": "Adicionar ao Carrinho",
+      "addNotes": "Adicionar observações",
+      "clickToAddNotes": "Clique para adicionar observações"
+    },
+    "names": {
+      "hawaiian": "Hawaiian",
+      "margherita": "Margherita", 
+      "meatLovers": "Meat Lovers",
+      "pepperoni": "Pepperoni",
+      "quattroStagioni": "Quattro Stagioni",
+      "vegetarian": "Vegetarian"
+    },
+    "descriptions": {
+      "hawaiian": "Molho de tomate, mozzarella, presunto e abacaxi",
+      "margherita": "Molho de tomate, mozzarella e manjericão fresco",
+      "meatLovers": "Molho de tomate, mozzarella, pepperoni, salsicha, bacon e presunto",
+      "pepperoni": "Molho de tomate, mozzarella e pepperoni",
+      "quattroStagioni": "Molho de tomate, mozzarella, presunto, cogumelos, alcachofras e azeitonas",
+      "vegetarian": "Molho de tomate, mozzarella, pimentões, cogumelos e cebola"
+    }
+  },
+  "cart": {
+    "title": "Carrinho",
+    "itemCount": "{count, plural, =1 {1 item} other {# itens}}",
+    "remove": "Remover"
+  },
+  "customer": {
+    "title": "Informações do Cliente",
+    "age": {
+      "label": "Idade"
+    },
+    "groupSize": {
+      "label": "Tamanho do Grupo (Opcional)",
+      "placeholder": "Ex: 15 pessoas para desconto de grupo"
+    },
+    "orderDateTime": {
+      "label": "Data e Hora do Pedido",
+      "help": "Escolha quando deseja receber seu pedido."
+    },
+    "loyaltyCard": "Tenho cartão fidelidade",
+    "disabled": "Pessoa com deficiência",
+    "finalizeOrder": "Finalizar Pedido",
+    "processing": "Processando..."
+  },
+  "orderSummary": {
+    "title": "Resumo do Pedido",
+    "subtotal": "Subtotal:",
+    "total": "Total:",
+    "minimumPrice": "* Preço mínimo aplicado (€5.00)"
+  },
+  "discounts": {
+    "childUnder4": "Desconto Criança (Menor de 4)",
+    "child": "Desconto Criança",
+    "senior": "Desconto Idoso",
+    "loyalty": "Desconto Fidelidade",
+    "disability": "Desconto Deficiência",
+    "group": "Desconto Grupo",
+    "earlyBird": "Desconto Jantar Cedo",
+    "weekend": "Desconto Final de Semana"
+  },
+  "errors": {
+    "addItemFirst": "Adicione pelo menos um item ao carrinho",
+    "orderFailed": "Erro ao criar pedido: {error}",
+    "orderError": "Erro ao criar pedido. Tente novamente.",
+    "agePositive": "Idade deve ser positiva",
+    "groupSizePositive": "Tamanho do grupo deve ser positivo",
+    "orderDateTimeRequired": "Data e hora do pedido é obrigatória"
+  },
+  "success": {
+    "orderCreated": "Pedido Realizado com Sucesso! 🍕",
+    "orderDescription": "Seu pedido foi processado e será preparado em breve!",
+    "orderSummaryTitle": "Resumo do Pedido #{orderId}",
+    "newOrder": "Fazer Novo Pedido",
+    "processing": "Processando seu pedido...",
+    "pleaseWait": "Por favor, aguarde"
+  },
+  "language": {
+    "select": "Selecionar idioma",
+    "pt": "Português",
+    "en": "English", 
+    "it": "Italiano"
+  },
+  "theme": {
+    "toggle": "Alternar tema"
+  }
+} 

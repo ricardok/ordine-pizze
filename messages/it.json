@@ -1,0 +1,97 @@
+{
+  "title": "🍕 Ordine Pizze",
+  "subtitle": "Ordina la tua pizza con sistema di sconti intelligente",
+  "pizza": {
+    "select": {
+      "title": "Seleziona le tue Pizze",
+      "description": "Scegli le tue pizze, dimensioni e ingredienti extra",
+      "label": "Pizza",
+      "placeholder": "Seleziona una pizza",
+      "notes": "Note per questa pizza (opzionale)",
+      "notesPlaceholder": "Es: senza cipolla, impasto sottile, ben cotta...",
+      "addToCart": "Aggiungi al Carrello",
+      "addNotes": "Aggiungi note",
+      "clickToAddNotes": "Clicca per aggiungere note"
+    },
+    "names": {
+      "hawaiian": "Hawaii",
+      "margherita": "Margherita", 
+      "meatLovers": "Carnivora",
+      "pepperoni": "Pepperoni",
+      "quattroStagioni": "Quattro Stagioni",
+      "vegetarian": "Vegetariana"
+    },
+    "descriptions": {
+      "hawaiian": "Salsa di pomodoro, mozzarella, prosciutto e ananas",
+      "margherita": "Salsa di pomodoro, mozzarella e basilico fresco",
+      "meatLovers": "Salsa di pomodoro, mozzarella, pepperoni, salsiccia, pancetta e prosciutto",
+      "pepperoni": "Salsa di pomodoro, mozzarella e pepperoni",
+      "quattroStagioni": "Salsa di pomodoro, mozzarella, prosciutto, funghi, carciofi e olive",
+      "vegetarian": "Salsa di pomodoro, mozzarella, peperoni, funghi e cipolle"
+    }
+  },
+  "cart": {
+    "title": "Carrello",
+    "itemCount": "{count, plural, =1 {1 articolo} other {# articoli}}",
+    "remove": "Rimuovi"
+  },
+  "customer": {
+    "title": "Informazioni Cliente",
+    "age": {
+      "label": "Età"
+    },
+    "groupSize": {
+      "label": "Dimensione Gruppo (Opzionale)",
+      "placeholder": "Es: 15 persone per sconto gruppo"
+    },
+    "orderDateTime": {
+      "label": "Data e Ora Ordine",
+      "help": "Scegli quando vuoi ricevere il tuo ordine."
+    },
+    "loyaltyCard": "Ho carta fedeltà",
+    "disabled": "Persona con disabilità",
+    "finalizeOrder": "Finalizza Ordine",
+    "processing": "Elaborazione..."
+  },
+  "orderSummary": {
+    "title": "Riepilogo Ordine",
+    "subtotal": "Subtotale:",
+    "total": "Totale:",
+    "minimumPrice": "* Prezzo minimo applicato (€5.00)"
+  },
+  "discounts": {
+    "childUnder4": "Sconto Bambino (Sotto 4)",
+    "child": "Sconto Bambino",
+    "senior": "Sconto Anziano",
+    "loyalty": "Sconto Fedeltà",
+    "disability": "Sconto Disabilità",
+    "group": "Sconto Gruppo",
+    "earlyBird": "Sconto Cena Presto",
+    "weekend": "Sconto Weekend"
+  },
+  "errors": {
+    "addItemFirst": "Aggiungi almeno un articolo al carrello",
+    "orderFailed": "Errore nella creazione dell'ordine: {error}",
+    "orderError": "Errore nella creazione dell'ordine. Riprova.",
+    "agePositive": "L'età deve essere positiva",
+    "groupSizePositive": "La dimensione del gruppo deve essere positiva",
+    "orderDateTimeRequired": "Data e ora dell'ordine è obbligatoria"
+  },
+  "success": {
+    "orderCreated": "Ordine Creato con Successo! 🍕",
+    "orderDescription": "Il tuo ordine è stato elaborato e sarà preparato presto!",
+    "orderSummaryTitle": "Riepilogo Ordine #{orderId}",
+    "newOrder": "Nuovo Ordine",
+    "processing": "Elaborazione del tuo ordine...",
+    "pleaseWait": "Attendere prego"
+  },
+  "language": {
+    "select": "Seleziona lingua",
+    "pt": "Português",
+    "en": "English", 
+    "it": "Italiano"
+  },
+  "theme": {
+    "toggle": "Cambia tema"
+  }
+} 
