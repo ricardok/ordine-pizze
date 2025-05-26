@@ -1,0 +1,97 @@
+{
+  "title": "🍕 Ordine Pizze",
+  "subtitle": "Order your pizza with intelligent discount system",
+  "pizza": {
+    "select": {
+      "title": "Select your Pizzas",
+      "description": "Choose your pizzas, sizes and extra ingredients",
+      "label": "Pizza",
+      "placeholder": "Select a pizza",
+      "notes": "Notes for this pizza (optional)",
+      "notesPlaceholder": "Ex: no onions, thin crust, well done...",
+      "addToCart": "Add to Cart",
+      "addNotes": "Add notes",
+      "clickToAddNotes": "Click to add notes"
+    },
+    "names": {
+      "hawaiian": "Hawaiian",
+      "margherita": "Margherita", 
+      "meatLovers": "Meat Lovers",
+      "pepperoni": "Pepperoni",
+      "quattroStagioni": "Quattro Stagioni",
+      "vegetarian": "Vegetarian"
+    },
+    "descriptions": {
+      "hawaiian": "Tomato sauce, mozzarella, ham and pineapple",
+      "margherita": "Tomato sauce, mozzarella and fresh basil",
+      "meatLovers": "Tomato sauce, mozzarella, pepperoni, sausage, bacon and ham",
+      "pepperoni": "Tomato sauce, mozzarella and pepperoni",
+      "quattroStagioni": "Tomato sauce, mozzarella, ham, mushrooms, artichokes and olives",
+      "vegetarian": "Tomato sauce, mozzarella, peppers, mushrooms and onions"
+    }
+  },
+  "cart": {
+    "title": "Cart",
+    "itemCount": "{count, plural, =1 {1 item} other {# items}}",
+    "remove": "Remove"
+  },
+  "customer": {
+    "title": "Customer Information",
+    "age": {
+      "label": "Age"
+    },
+    "groupSize": {
+      "label": "Group Size (Optional)",
+      "placeholder": "Ex: 15 people for group discount"
+    },
+    "orderDateTime": {
+      "label": "Order Date and Time",
+      "help": "Choose when you want to receive your order."
+    },
+    "loyaltyCard": "I have loyalty card",
+    "disabled": "Person with disability",
+    "finalizeOrder": "Finalize Order",
+    "processing": "Processing..."
+  },
+  "orderSummary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal:",
+    "total": "Total:",
+    "minimumPrice": "* Minimum price applied (€5.00)"
+  },
+  "discounts": {
+    "childUnder4": "Child Discount (Under 4)",
+    "child": "Child Discount",
+    "senior": "Senior Discount",
+    "loyalty": "Loyalty Discount",
+    "disability": "Disability Discount",
+    "group": "Group Discount",
+    "earlyBird": "Early Diner Discount",
+    "weekend": "Weekend Discount"
+  },
+  "errors": {
+    "addItemFirst": "Add at least one item to cart",
+    "orderFailed": "Error creating order: {error}",
+    "orderError": "Error creating order. Please try again.",
+    "agePositive": "Age must be positive",
+    "groupSizePositive": "Group size must be positive",
+    "orderDateTimeRequired": "Order date and time is required"
+  },
+  "success": {
+    "orderCreated": "Order Successfully Created! 🍕",
+    "orderDescription": "Your order has been processed and will be prepared soon!",
+    "orderSummaryTitle": "Order Summary #{orderId}",
+    "newOrder": "Place New Order",
+    "processing": "Processing your order...",
+    "pleaseWait": "Please wait"
+  },
+  "language": {
+    "select": "Select language",
+    "pt": "Português",
+    "en": "English", 
+    "it": "Italiano"
+  },
+  "theme": {
+    "toggle": "Theme"
+  }
+} 
