@@ -1,9 +1,10 @@
 import { Pizza } from '@/lib/types'
 import OrderHandler from '@/components/order-handler'
 import { SimpleI18nProvider } from '@/components/simple-i18n-provider'
+import { getApiUrl } from '@/lib/config'
 
 async function getPizzas(): Promise<Pizza[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/pizzas`, {
+  const res = await fetch(getApiUrl('pizzas'), {
     cache: 'no-store'
   })
   

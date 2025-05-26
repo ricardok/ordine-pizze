@@ -6,6 +6,7 @@ import { LoadingOverlay } from '@/components/molecules/loading-overlay'
 import { SuccessModal } from '@/components/organisms/success-modal'
 import { Pizza, OrderFormData } from '@/lib/types'
 import { useTranslations } from '@/components/simple-i18n-provider'
+import { getApiUrl } from '@/lib/config'
 
 interface OrderHandlerProps {
   pizzas: Pizza[]
@@ -35,7 +36,7 @@ export default function OrderHandler({ pizzas }: OrderHandlerProps) {
   const handleOrderSubmit = async (orderData: OrderFormData) => {
     setIsLoading(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/orders`, {
+      const response = await fetch(getApiUrl('orders'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import { Pizza } from '@/lib/types'
+import { getApiUrl } from '@/lib/config'
 
 // Mock pizza 
 export const mockPizzas: Pizza[] = [
@@ -44,7 +45,7 @@ export const mockPizzas: Pizza[] = [
 export async function fetchRandomPizzaImage(useCache: boolean = true): Promise<string> {
   try {
     const cacheParam = useCache ? '?cache=true' : ''
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/random-pizza-image${cacheParam}`, {
+    const response = await fetch(`${getApiUrl('random-pizza-image')}${cacheParam}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -60,7 +61,7 @@ export async function fetchRandomPizzaImage(useCache: boolean = true): Promise<s
 }
 
 // Get pizzas with images
-export async function getPizzasWithImages(useCache: boolean = true): Promise<Pizza[]> {
+export async function getPizzasWithImages(useCache: boolean = false): Promise<Pizza[]> {
   const pizzasWithImages = await Promise.all(
     mockPizzas.map(async (pizza) => {
       const imageUrl = await fetchRandomPizzaImage(useCache)
