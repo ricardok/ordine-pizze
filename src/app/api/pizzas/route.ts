@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import { getPizzasWithImages } from '@/lib/mocks/pizzas'
 
+// Force this route to be dynamic since it fetches external data
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     // Get pizzas with images from centralized mock

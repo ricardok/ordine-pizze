@@ -52,6 +52,10 @@ export async function fetchRandomPizzaImage(useCache: boolean = true): Promise<s
       },
     })
     
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
     const data = await response.json()
     return data.image
   } catch (error) {
