@@ -11,6 +11,10 @@ export const getBaseUrl = (): string => {
     return `https://${process.env.VERCEL_URL}`
   }
 
+  if (process.env.VERCEL_BRANCH_URL) {
+    return `https://${process.env.VERCEL_BRANCH_URL}`
+  }
+
   return 'http://localhost:3000'
 }
 
