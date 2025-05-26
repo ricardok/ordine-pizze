@@ -33,7 +33,7 @@ export function PizzaCard({
     >
       <div className="flex items-center gap-3">
         <Image 
-          src={pizza.image || '/placeholder-pizza.svg'} 
+          src={pizza.image || '/placeholder-pizza.jpg'} 
           alt={getPizzaName(pizza.id)}
           className="w-16 h-12 object-cover rounded flex-shrink-0"
           width={64}

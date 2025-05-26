@@ -48,7 +48,7 @@ export function CartItemComponent({
       <div className="block md:hidden">
         <div className="flex items-start gap-3">
           <Image 
-            src={pizza.image || '/placeholder-pizza.svg'} 
+            src={pizza.image || '/placeholder-pizza.jpg'} 
             alt={getPizzaName(item.pizzaId)}
             className="w-16 h-12 object-cover rounded flex-shrink-0"
             width={64}
@@ -111,7 +111,7 @@ export function CartItemComponent({
       <div className="hidden md:flex items-center justify-between">
         <div className="flex items-center gap-3 flex-1">
           <Image 
-            src={pizza.image || '/placeholder-pizza.svg'} 
+            src={pizza.image || '/placeholder-pizza.jpg'} 
             alt={getPizzaName(item.pizzaId)}
             className="w-16 h-12 object-cover rounded flex-shrink-0"
             width={64}
