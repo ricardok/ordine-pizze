@@ -2,8 +2,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Plus, Minus } from 'lucide-react'
 import { Pizza } from '@/lib/types'
-import { PriceDisplay } from '@/components/atoms/price-display'
 import { useTranslations } from '@/components/simple-i18n-provider'
+import Image from 'next/image'
 
 interface CartItem {
   pizzaId: string
@@ -47,10 +47,12 @@ export function CartItemComponent({
       {/* Mobile Layout */}
       <div className="block md:hidden">
         <div className="flex items-start gap-3">
-          <img 
-            src={pizza.image} 
+          <Image 
+            src={pizza.image || '/placeholder-pizza.svg'} 
             alt={getPizzaName(item.pizzaId)}
             className="w-16 h-12 object-cover rounded flex-shrink-0"
+            width={64}
+            height={48}
           />
           <div className="flex-1 min-w-0">
             <div className="font-medium text-sm">
@@ -108,10 +110,12 @@ export function CartItemComponent({
       {/* Desktop Layout */}
       <div className="hidden md:flex items-center justify-between">
         <div className="flex items-center gap-3 flex-1">
-          <img 
-            src={pizza.image} 
+          <Image 
+            src={pizza.image || '/placeholder-pizza.svg'} 
             alt={getPizzaName(item.pizzaId)}
             className="w-16 h-12 object-cover rounded flex-shrink-0"
+            width={64}
+            height={48}
           />
           <div className="flex-1 min-w-0">
             <div className="font-medium">

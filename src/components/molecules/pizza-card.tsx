@@ -1,6 +1,7 @@
 import { Pizza } from '@/lib/types'
 import { PriceDisplay } from '@/components/atoms/price-display'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 interface PizzaCardProps {
   pizza: Pizza
@@ -31,10 +32,12 @@ export function PizzaCard({
       onClick={() => onSelect(pizza.id)}
     >
       <div className="flex items-center gap-3">
-        <img 
-          src={pizza.image} 
+        <Image 
+          src={pizza.image || '/placeholder-pizza.svg'} 
           alt={getPizzaName(pizza.id)}
           className="w-16 h-12 object-cover rounded flex-shrink-0"
+          width={64}
+          height={48}
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">

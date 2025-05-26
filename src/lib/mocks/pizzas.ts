@@ -54,6 +54,7 @@ export async function fetchRandomPizzaImage(useCache: boolean = true): Promise<s
     const data = await response.json()
     return data.image
   } catch (error) {
+    console.log('Error fetching random pizza image:', error)
     return 'https://placehold.co/300x300?text=Pizza'
   }
 }

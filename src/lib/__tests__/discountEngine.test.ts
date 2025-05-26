@@ -1,4 +1,4 @@
-import { calculateFinalPrice, validateDiscountInput, getDiscountRules, type DiscountInput } from '../discountEngine';
+import { calculateFinalPrice, type DiscountInput } from '../discountEngine';
 
 describe('Discount Engine', () => {
   const baseInput: DiscountInput = {

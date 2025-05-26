@@ -51,8 +51,8 @@ export default function OrderHandler({ pizzas }: OrderHandlerProps) {
       } else {
         alert(t('errors.orderFailed').replace('{error}', result.error))
       }
-    } catch (error) {
-      alert(t('errors.orderError'))
+    } catch (_error) {
+      alert(`${t('errors.orderError')}, ${_error}`)
     } finally {
       setIsLoading(false)
     }
