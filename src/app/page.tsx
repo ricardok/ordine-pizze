@@ -3,6 +3,9 @@ import OrderHandler from '@/components/order-handler'
 import { SimpleI18nProvider } from '@/components/simple-i18n-provider'
 import { getApiUrl } from '@/lib/config'
 
+// Force this page to be dynamic since it fetches data
+export const dynamic = 'force-dynamic'
+
 async function getPizzas(): Promise<Pizza[]> {
   const res = await fetch(getApiUrl('pizzas'), {
     cache: 'no-store'
