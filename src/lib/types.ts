@@ -12,6 +12,7 @@ export interface OrderFormData {
   customerAge?: number | null | undefined
   hasLoyaltyCard: boolean
   isDisabled: boolean
+  isEarlyDiner: boolean
   groupSize?: number | null | undefined
   orderDateTime: string
   items: OrderItem[]

@@ -108,6 +108,15 @@ export function CustomerForm({
             </p>
           </div>
 
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="isEarlyDiner"
+              {...register('isEarlyDiner')}
+              onCheckedChange={(checked) => setValue('isEarlyDiner', !!checked)}
+            />
+            <Label htmlFor="isEarlyDiner">{t('customer.earlyDiner')}</Label>
+          </div>
+
           {pricePreview && (
             <PriceSummary pricePreview={pricePreview} />
           )}

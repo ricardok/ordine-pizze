@@ -4,6 +4,7 @@ export interface DiscountInput {
   basePrice: number;
   hasLoyaltyCard: boolean;
   isDisabled: boolean;
+  isEarlyDiner: boolean;
   age?: number | null | undefined;
   groupSize?: number | null | undefined;
   orderDate: Date;
@@ -108,16 +109,9 @@ const DISCOUNT_RULES: DiscountRule[] = [
     name: 'Early Diner Discount',
     percentage: 10,
     priority: 7,
-    condition: (input) => isEarlyDiner(input.orderDate) && !isWeekend(input.orderDate)
+    condition: (input) => input.isEarlyDiner && !isWeekend(input.orderDate)
   }
 ];
-
-function isEarlyDiner(orderDate: Date): boolean {
-  const romeTime = format(orderDate, 'HH:mm', { timeZone: ROME_TIMEZONE });
-  const hour = parseInt(romeTime.split(':')[0], 10);
-  return hour < 20;
-}
-
 
 function isWeekend(orderDate: Date): boolean {
   // date-fns-tz to get the day of week in Rome timezone
@@ -202,6 +196,10 @@ export function validateDiscountInput(input: Partial<DiscountInput>): string[] {
 
   if (typeof input.isDisabled !== 'boolean') {
     errors.push('Disability status must be a boolean');
+  }
+
+  if (typeof input.isEarlyDiner !== 'boolean') {
+    errors.push('Early diner status must be a boolean');
   }
 
   if (input.groupSize !== null && input.groupSize !== undefined) {

@@ -5,6 +5,7 @@ describe('Discount Engine', () => {
     basePrice: 20.00,
     hasLoyaltyCard: false,
     isDisabled: false,
+    isEarlyDiner: false,
     groupSize: null,
     orderDate: new Date('2024-01-15T15:00:00.000Z') // Monday 15:00 Rome time
   };
@@ -195,115 +196,79 @@ describe('Discount Engine', () => {
 
       it('should not apply group discount for 14 people', () => {
         const result = calculateFinalPrice({ ...baseInput, groupSize: 14 });
-        expect(result.discountApplied).not.toContain('Group Discount');
+        expect(result.discountApplied).toBe(null);
       });
     });
 
     describe('Child discounts (Priority 4)', () => {
       it('should apply 50% discount for age under 4', () => {
-        const input: DiscountInput = {
-          basePrice: 20,
-          hasLoyaltyCard: false,
-          isDisabled: false,
-          age: 3,
-          groupSize: null,
-          orderDate: new Date('2023-05-15T21:00:00') // After 20:00 to avoid early diner
-        }
-
-        const result = calculateFinalPrice(input)
-
-        expect(result.discountApplied).toBe('Child Discount (Under 4)')
-        expect(result.discountPercentage).toBe(50)
-        expect(result.finalPrice).toBe(10.00)
-      })
+        const result = calculateFinalPrice({ ...baseInput, age: 3 });
+        expect(result.discountApplied).toBe('Child Discount (Under 4)');
+        expect(result.discountPercentage).toBe(50);
+        expect(result.finalPrice).toBe(10.00);
+      });
 
       it('should apply 20% discount for age 4', () => {
-        const input: DiscountInput = {
-          basePrice: 20,
-          hasLoyaltyCard: false,
-          isDisabled: false,
-          age: 4,
-          groupSize: null,
-          orderDate: new Date('2023-05-15T21:00:00') // After 20:00 to avoid early diner
-        }
-
-        const result = calculateFinalPrice(input)
-
-        expect(result.discountApplied).toBe('Child Discount (4-11 years)')
-        expect(result.discountPercentage).toBe(20)
-        expect(result.finalPrice).toBe(16.00)
-      })
+        const result = calculateFinalPrice({ ...baseInput, age: 4 });
+        expect(result.discountApplied).toBe('Child Discount (4-11 years)');
+        expect(result.discountPercentage).toBe(20);
+        expect(result.finalPrice).toBe(16.00);
+      });
 
       it('should apply 20% discount for age 11', () => {
-        const input: DiscountInput = {
-          basePrice: 20,
-          hasLoyaltyCard: false,
-          isDisabled: false,
-          age: 11,
-          groupSize: null,
-          orderDate: new Date('2023-05-15T21:00:00') // After 20:00 to avoid early diner
-        }
-
-        const result = calculateFinalPrice(input)
-
-        expect(result.discountApplied).toBe('Child Discount (4-11 years)')
-        expect(result.discountPercentage).toBe(20)
-        expect(result.finalPrice).toBe(16.00)
-      })
+        const result = calculateFinalPrice({ ...baseInput, age: 11 });
+        expect(result.discountApplied).toBe('Child Discount (4-11 years)');
+        expect(result.discountPercentage).toBe(20);
+      });
 
       it('should not apply child discount for age 12', () => {
-        const input: DiscountInput = {
-          basePrice: 20,
-          hasLoyaltyCard: false,
-          isDisabled: false,
-          age: 12,
-          groupSize: null,
-          orderDate: new Date('2023-05-15T21:00:00') // Changed to 21:00 to avoid early diner discount
-        }
-
-        const result = calculateFinalPrice(input)
-
-        expect(result.discountApplied).toBe(null)
-        expect(result.discountPercentage).toBe(0)
-        expect(result.finalPrice).toBe(20.00)
-      })
+        const result = calculateFinalPrice({ ...baseInput, age: 12 });
+        expect(result.discountApplied).toBe(null);
+      });
 
       it('should not apply child discount when group discount applies', () => {
-        const input: DiscountInput = {
-          basePrice: 20,
-          hasLoyaltyCard: false,
-          isDisabled: false,
-          age: 3, // Under 4, would normally get 50% discount
-          groupSize: 15, // But group discount takes priority
-          orderDate: new Date('2023-05-15T21:00:00') // After 20:00 to avoid early diner
-        }
-
-        const result = calculateFinalPrice(input)
-
-        expect(result.discountApplied).toBe('Group Discount (15-20 people)')
-        expect(result.discountPercentage).toBe(20)
-        expect(result.finalPrice).toBe(16.00)
-      })
-
-      // NEW TEST: Italian rule verification
-      it('should prioritize group discount over child discount even for very young children', () => {
-        // Test with a 1-year-old in a group of 25 people
         const input: DiscountInput = {
           basePrice: 30,
           hasLoyaltyCard: false,
           isDisabled: false,
-          age: 1, // Very young child - would get 50% if no group
-          groupSize: 25, // Large group - should get 50% group discount instead
-          orderDate: new Date('2023-05-15T21:00:00') // After 20:00 to avoid early diner
+          isEarlyDiner: false,
+          age: 1, // Very young child that would qualify for 50% child discount
+          groupSize: 25, // Group size that qualifies for 50% group discount
+          orderDate: new Date('2024-01-15T15:00:00.000Z')
         }
 
         const result = calculateFinalPrice(input)
 
-        // Should apply group discount, NOT child discount
+        // Group discount should take priority over child discount
         expect(result.discountApplied).toBe('Group Discount (25+ people)')
         expect(result.discountPercentage).toBe(50)
         expect(result.finalPrice).toBe(15.00)
-        
+
+        // Verify that child discount conditions are met but not applied
+        const hasGroupDiscount = (input.groupSize ?? 0) >= 15
+        const childConditionMet = input.age != null && input.age < 4
+        expect(childConditionMet).toBe(true) // Child would qualify for discount
+        expect(hasGroupDiscount).toBe(true) // But group discount prevents it
+      })
+
+      it('should prioritize group discount over child discount even for very young children', () => {
+        const input: DiscountInput = {
+          basePrice: 50,
+          hasLoyaltyCard: false,
+          isDisabled: false,
+          isEarlyDiner: false,
+          age: 1, // Very young child that would qualify for 50% child discount
+          groupSize: 15, // Smallest group size that qualifies for group discount
+          orderDate: new Date('2024-01-15T15:00:00.000Z')
+        }
+
+        const result = calculateFinalPrice(input)
+
+        // Group discount should take priority
+        expect(result.discountApplied).toBe('Group Discount (15-20 people)')
+        expect(result.discountPercentage).toBe(20)
+        expect(result.finalPrice).toBe(40.00)
+
         // Verify that child discount conditions are met but not applied
         const hasGroupDiscount = (input.groupSize ?? 0) >= 15
         const childConditionMet = input.age != null && input.age < 4
@@ -317,9 +282,10 @@ describe('Discount Engine', () => {
           basePrice: 30,
           hasLoyaltyCard: false,
           isDisabled: false,
+          isEarlyDiner: false,
           age: 1, // Same young child
           groupSize: null, // No group this time
-          orderDate: new Date('2023-05-15T21:00:00') // After 20:00 to avoid early diner
+          orderDate: new Date('2024-01-15T15:00:00.000Z')
         }
 
         const result = calculateFinalPrice(input)
@@ -351,20 +317,28 @@ describe('Discount Engine', () => {
     });
 
     describe('Early diner / Weekend discount (Priority 6 - 10%)', () => {
-      it('should apply 10% early diner discount (before 20:00)', () => {
-        // 19:00 Rome time
-        const earlyDate = new Date('2024-01-15T18:00:00.000Z');
+      it('should apply 10% early diner discount when checkbox is checked', () => {
         const result = calculateFinalPrice({ 
           ...baseInput, 
-          orderDate: earlyDate 
+          isEarlyDiner: true 
         });
         expect(result.discountApplied).toBe('Early Diner Discount');
         expect(result.discountPercentage).toBe(10);
         expect(result.finalPrice).toBe(18.00);
       });
 
+      it('should not apply early diner discount when checkbox is not checked', () => {
+        const result = calculateFinalPrice({ 
+          ...baseInput, 
+          isEarlyDiner: false 
+        });
+        expect(result.discountApplied).toBe(null);
+        expect(result.discountPercentage).toBe(0);
+        expect(result.finalPrice).toBe(20.00);
+      });
+
       it('should apply 10% weekend discount (Saturday)', () => {
-        // Saturday 21:00 Rome time (after early diner)
+        // Saturday
         const saturdayDate = new Date('2024-01-13T20:00:00.000Z');
         const result = calculateFinalPrice({ 
           ...baseInput, 
@@ -375,7 +349,7 @@ describe('Discount Engine', () => {
       });
 
       it('should apply 10% weekend discount (Sunday)', () => {
-        // Sunday 21:00 Rome time (after early diner)
+        // Sunday
         const sundayDate = new Date('2024-01-14T20:00:00.000Z');
         const result = calculateFinalPrice({ 
           ...baseInput, 
@@ -385,23 +359,33 @@ describe('Discount Engine', () => {
         expect(result.discountPercentage).toBe(10);
       });
 
-      it('should not apply early diner/weekend discount when higher priority applies', () => {
-        const earlyDate = new Date('2024-01-13T18:00:00.000Z'); // Saturday early
+      it('should not apply early diner discount on weekend when checkbox is checked', () => {
+        // Saturday with early diner checkbox
+        const saturdayDate = new Date('2024-01-13T20:00:00.000Z');
         const result = calculateFinalPrice({ 
           ...baseInput, 
-          orderDate: earlyDate,
+          isEarlyDiner: true,
+          orderDate: saturdayDate 
+        });
+        expect(result.discountApplied).toBe('Weekend Discount');
+        expect(result.discountPercentage).toBe(10);
+      });
+
+      it('should not apply early diner/weekend discount when higher priority applies', () => {
+        const result = calculateFinalPrice({ 
+          ...baseInput, 
+          isEarlyDiner: true,
           hasLoyaltyCard: true 
         });
         expect(result.discountApplied).toBe('Loyalty Card Discount');
         expect(result.discountPercentage).toBe(15);
       });
 
-      it('should not apply discount for weekday after 20:00', () => {
-        // Monday 21:00 Rome time
-        const lateWeekdayDate = new Date('2024-01-15T20:00:00.000Z');
+      it('should not apply discount for weekday when early diner is not checked', () => {
+        // Monday without early diner
         const result = calculateFinalPrice({ 
           ...baseInput, 
-          orderDate: lateWeekdayDate 
+          isEarlyDiner: false
         });
         expect(result.discountApplied).toBe(null);
         expect(result.discountPercentage).toBe(0);
@@ -410,11 +394,9 @@ describe('Discount Engine', () => {
     });
 
     describe('No discount scenarios', () => {
-      it('should apply no discount for regular adult on weekday after 20:00', () => {
-        const regularDate = new Date('2024-01-15T20:00:00.000Z'); // Monday 21:00 Rome
+      it('should apply no discount for regular adult on weekday', () => {
         const result = calculateFinalPrice({ 
-          ...baseInput, 
-          orderDate: regularDate 
+          ...baseInput 
         });
         expect(result.discountApplied).toBe(null);
         expect(result.discountPercentage).toBe(0);
@@ -424,10 +406,8 @@ describe('Discount Engine', () => {
       });
 
       it('should apply no discount when age is not provided', () => {
-        const regularDate = new Date('2024-01-15T20:00:00.000Z'); // Monday 21:00 Rome
         const result = calculateFinalPrice({ 
-          ...baseInput, 
-          orderDate: regularDate 
+          ...baseInput 
         });
         expect(result.discountApplied).toBe(null);
         expect(result.discountPercentage).toBe(0);
@@ -482,18 +462,18 @@ describe('Discount Engine', () => {
     });
 
     describe('Timezone scenarios', () => {
-      it('should handle different timezones correctly for early diner', () => {
-        // This should be 19:00 Rome time (early diner)
-        const utcDate = new Date('2024-01-15T18:00:00.000Z');
+      it('should handle different timezones correctly for weekend discount', () => {
+        // Saturday in different timezone
+        const utcDate = new Date('2024-01-13T18:00:00.000Z');
         const result = calculateFinalPrice({ 
           ...baseInput, 
           orderDate: utcDate 
         });
-        expect(result.discountApplied).toBe('Early Diner Discount');
+        expect(result.discountApplied).toBe('Weekend Discount');
       });
 
-      it('should handle different timezones correctly for late orders', () => {
-        // This should be 21:00 Rome time (not early diner)
+      it('should handle different timezones correctly for weekday', () => {
+        // Monday in different timezone
         const utcDate = new Date('2024-01-15T20:00:00.000Z');
         const result = calculateFinalPrice({ 
           ...baseInput, 

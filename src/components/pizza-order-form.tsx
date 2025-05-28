@@ -23,6 +23,7 @@ const createOrderSchema = (t: (key: string) => string) => z.object({
   }),
   hasLoyaltyCard: z.boolean(),
   isDisabled: z.boolean(),
+  isEarlyDiner: z.boolean(),
   groupSize: z.union([
     z.number().positive(t('errors.groupSizePositive')),
     z.literal(''),
@@ -79,6 +80,7 @@ export function PizzaOrderForm({ pizzas, onSubmit }: PizzaOrderFormProps) {
     defaultValues: {
       hasLoyaltyCard: false,
       isDisabled: false,
+      isEarlyDiner: false,
       orderDateTime: getCurrentDateTime(),
     }
   })
@@ -86,6 +88,7 @@ export function PizzaOrderForm({ pizzas, onSubmit }: PizzaOrderFormProps) {
   const customerAge = watch('customerAge')
   const hasLoyaltyCard = watch('hasLoyaltyCard')
   const isDisabled = watch('isDisabled')
+  const isEarlyDiner = watch('isEarlyDiner')
   const groupSize = watch('groupSize')
   const orderDateTime = watch('orderDateTime')
 
@@ -109,6 +112,7 @@ export function PizzaOrderForm({ pizzas, onSubmit }: PizzaOrderFormProps) {
         basePrice: subtotal,
         hasLoyaltyCard: hasLoyaltyCard || false,
         isDisabled: isDisabled || false,
+        isEarlyDiner: isEarlyDiner || false,
         age: customerAge, 
         groupSize: groupSize || null,
         orderDate: new Date(orderDateTime) 
@@ -119,7 +123,7 @@ export function PizzaOrderForm({ pizzas, onSubmit }: PizzaOrderFormProps) {
     } else {
       setPricePreview(null)
     }
-  }, [cart, customerAge, hasLoyaltyCard, isDisabled, groupSize, orderDateTime, calculateSubtotal])
+  }, [cart, customerAge, hasLoyaltyCard, isDisabled, isEarlyDiner, groupSize, orderDateTime, calculateSubtotal])
 
   const addToCart = () => {
     if (!selectedPizza) return
