@@ -33,7 +33,7 @@ Hierarchical discount system with multiple rules:
 
 ### 🌍 Multilingual
 Complete support for 3 languages:
-- 🇵🇹 Português
+- 🇧🇷 Português
 - 🇬🇧 English  
 - 🇮🇹 Italiano
 
