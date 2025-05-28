@@ -94,5 +94,10 @@
   },
   "theme": {
     "toggle": "Alternar tema"
+  },
+  "notFound": {
+    "title": "Página Não Encontrada",
+    "message": "Ops! A página que você está procurando não existe.",
+    "goHome": "Voltar ao Início"
   }
 } 
