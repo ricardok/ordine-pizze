@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
       basePrice: subtotal,
       hasLoyaltyCard: orderData.hasLoyaltyCard,
       isDisabled: orderData.isDisabled,
+      isEarlyDiner: orderData.isEarlyDiner,
       age: orderData.customerAge,
       groupSize: orderData.groupSize || null,
       orderDate: new Date(orderData.orderDateTime)
@@ -51,6 +52,7 @@ export async function POST(request: NextRequest) {
       customerAge: orderData.customerAge,
       hasLoyaltyCard: orderData.hasLoyaltyCard,
       isDisabled: orderData.isDisabled,
+      isEarlyDiner: orderData.isEarlyDiner,
       groupSize: orderData.groupSize,
       orderDateTime: orderData.orderDateTime,
       subtotal,
@@ -61,14 +63,6 @@ export async function POST(request: NextRequest) {
       priceFloorApplied: priceResult.priceFloorApplied,
       items: orderItems,
       createdAt: new Date().toISOString()
-    }
-
-    try {
-      const existingOrders = JSON.parse(localStorage.getItem('pizza-orders') || '[]')
-      existingOrders.push(order)
-      localStorage.setItem('pizza-orders', JSON.stringify(existingOrders))
-    } catch (localStorageError) {
-      console.log('Could not save to localStorage (likely server-side):', localStorageError)
     }
 
     return NextResponse.json({

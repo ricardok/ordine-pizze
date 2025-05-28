@@ -48,8 +48,9 @@
       "label": "Data e Ora Ordine",
       "help": "Scegli quando vuoi ricevere il tuo ordine."
     },
-    "loyaltyCard": "Ho carta fedeltà",
+    "loyaltyCard": "Ho una carta fedeltà",
     "disabled": "Persona con disabilità",
+    "earlyDiner": "Ordine arrivato entro le 20:00",
     "finalizeOrder": "Finalizza Ordine",
     "processing": "Elaborazione..."
   },

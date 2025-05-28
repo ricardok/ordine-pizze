@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { CartItemComponent } from '@/components/molecules/cart-item'
 import { Pizza } from '@/lib/types'
 import { useTranslations } from '@/components/simple-i18n-provider'
+import { ShoppingCart as ShoppingCartIcon } from 'lucide-react'
 
 interface CartItem {
   pizzaId: string
@@ -45,7 +46,10 @@ export const ShoppingCart = forwardRef<HTMLDivElement, ShoppingCartProps>(
     return (
       <Card ref={ref}>
         <CardHeader>
-          <CardTitle>{t('cart.title')} ({cart.length} {cart.length === 1 ? 'item' : 'itens'})</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <ShoppingCartIcon className="h-5 w-5" />
+            {t('cart.title')} ({cart.length} {cart.length === 1 ? 'item' : 'itens'})
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">

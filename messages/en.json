@@ -48,8 +48,9 @@
       "label": "Order Date and Time",
       "help": "Choose when you want to receive your order."
     },
-    "loyaltyCard": "I have loyalty card",
+    "loyaltyCard": "I have a loyalty card",
     "disabled": "Person with disability",
+    "earlyDiner": "Order arrived by 8 PM",
     "finalizeOrder": "Finalize Order",
     "processing": "Processing..."
   },

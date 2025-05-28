@@ -33,7 +33,7 @@ Sistema gerarchico di sconti con regole multiple:
 
 ### 🌍 Multilingue
 Supporto completo per 3 lingue:
-- 🇵🇹 Português
+- 🇧🇷 Português
 - 🇬🇧 English  
 - 🇮🇹 Italiano
 
