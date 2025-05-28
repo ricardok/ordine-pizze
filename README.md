@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍕 Ordine Pizze
 
-## Getting Started
+> **🌍 Other languages**: [Italiano](README.it.md)
 
-First, run the development server:
+Visit [https://ordine-pizze.vercel.app/](https://ordine-pizze.vercel.app/) in your browser.
 
+A modern pizza ordering system developed with Next.js and React.
+
+## 🚀 Features
+
+### 🛒 Order System
+- **Pizza Catalog**: Various types of pizzas available
+- **Shopping Cart**: Add multiple pizzas, adjust quantities, and remove items
+- **Custom Notes**: Add special instructions for each pizza
+
+### 💰 Intelligent Discount System
+Hierarchical discount system with multiple rules:
+
+1. **Disability Discount** (90%) - Maximum priority
+2. **Senior Discount** (70%) - For 60+ years
+3. **Group Discounts**:
+   - 15-20 people: 20% discount
+   - 21-24 people: 30% discount
+   - 25+ people: 50% discount
+4. **Child Discounts**:
+   - Under 4 years: 50% discount
+   - 4-11 years: 20% discount
+5. **Loyalty Card** (15%)
+6. **Weekend Discount** (10%)
+7. **Early Diner Discount** (10%) - Orders before 8 PM
+
+**Minimum Price**: €5.00 (applied automatically)
+
+### 🌍 Multilingual
+Complete support for 3 languages:
+- 🇵🇹 Português
+- 🇬🇧 English  
+- 🇮🇹 Italiano
+
+### 🎨 Modern Interface
+- **Light/Dark Theme**: Automatic or manual switching
+- **Responsive Design**: Works perfectly on desktop and mobile
+- **Accessible Components**: Based on Radix UI
+- **Smooth Experience**: Intuitive and modern interface
+
+## 🛠️ Technologies Used
+
+### Frontend & Framework
+- **[Next.js 14](https://nextjs.org/)** - React framework with App Router
+- **[React 18](https://react.dev/)** - UI library
+- **[TypeScript](https://www.typescriptlang.org/)** - Static typing
+
+### Styling & UI
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Radix UI](https://www.radix-ui.com/)** - Accessible primitive components
+- **[Lucide React](https://lucide.dev/)** - Modern icons
+- **[next-themes](https://github.com/pacocoursey/next-themes)** - Theme management
+
+### Forms & Validation
+- **[React Hook Form](https://react-hook-form.com/)** - Form management
+- **[Zod](https://zod.dev/)** - TypeScript schema validation
+- **[@hookform/resolvers](https://github.com/react-hook-form/resolvers)** - Zod + RHF integration
+
+### Internationalization
+- **[next-intl](https://next-intl-docs.vercel.app/)** - i18n for Next.js
+- **[date-fns-tz](https://github.com/marnusw/date-fns-tz)** - Timezone manipulation
+
+### Styling Utilities
+- **[class-variance-authority](https://cva.style/)** - Component variants
+- **[clsx](https://github.com/lukeed/clsx)** - Conditional class utility
+- **[tailwind-merge](https://github.com/dcastil/tailwind-merge)** - Smart Tailwind class merging
+
+### Testing & Development
+- **[Jest](https://jestjs.io/)** - Testing framework
+- **[@testing-library](https://testing-library.com/)** - Testing utilities
+- **[ESLint](https://eslint.org/)** - Code linting
+- **[Prettier](https://prettier.io/)** - Code formatting
+
+## 📋 Prerequisites
+
+- **Node.js** >= 18.17.0 (recommended: 22.16.0)
+- **npm** or **yarn**
+
+## 🏗️ Installation and Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/ricardok/ordine-pizze
+cd ordine-pizze
+```
+
+### 2. Configure Node.js version (optional)
+```bash
+# If you use nvm
+nvm use
+```
+
+### 3. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+### 4. Run the project
+
+#### Development
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
