@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { ShoppingCart, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { Pizza } from '@/lib/types'
 import { PizzaCard } from '@/components/molecules/pizza-card'
 import { useTranslations } from '@/components/simple-i18n-provider'
@@ -33,10 +33,7 @@ export function PizzaSelector({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <ShoppingCart className="h-5 w-5" />
-          {t('pizza.select.title')}
-        </CardTitle>
+        <CardTitle>{t('pizza.select.title')}</CardTitle>
         <CardDescription>
           {t('pizza.select.description')}
         </CardDescription>
